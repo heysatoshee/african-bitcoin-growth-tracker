@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>
+    // Resolve links from the site root, whether hosted at / (Netlify) or /repo-name/ (GitHub Pages)
+    (function () {
+      var parts = location.pathname.split("/");
+      var root = location.hostname.endsWith("github.io") && parts.length > 2 ? "/" + parts[1] + "/" : "/";
+      document.write('<base href="' + root + '">');
+    })();
+  </script>
+  <title>Page not found</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="assets/logo-256.png">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .nf { min-height: 100vh; display: grid; place-items: center; text-align: center; padding: 24px; }
+    .nf img { width: 72px; height: 72px; margin: 0 auto 28px; }
+    .nf h1 { font: 400 clamp(48px, 8vw, 88px)/1 var(--font-display); margin: 0 0 14px; -webkit-text-stroke: .014em currentColor; }
+    .nf h1 em { color: var(--orange-700); }
+    .nf p { color: var(--ink-2); font-size: 18px; margin: 0 0 28px; }
+    .nf .hero-cta { justify-content: center; }
+  </style>
+</head>
+<body>
+  <main class="nf">
+    <div>
+      <img src="assets/logo-256.png" alt="African Bitcoiners">
+      <h1>This page <em>isn’t here</em></h1>
+      <p>It may have moved. Try the growth tracker or the API docs.</p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="./">Growth tracker</a>
+        <a class="btn btn-ghost" href="api.html">API docs</a>
+      </div>
+    </div>
+  </main>
+</body>
+</html>

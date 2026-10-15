@@ -1,0 +1,363 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ecosystem Growth Tracker</title>
+  <meta name="description" content="Is Africa's Bitcoin ecosystem growing? Quarter-by-quarter growth of Bitcoin projects across Africa, by country and category.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Is Africa's Bitcoin ecosystem growing?">
+  <meta property="og:description" content="Quarter-by-quarter growth of Bitcoin projects across Africa, by country and category. From African Bitcoiners.">
+  <meta name="twitter:card" content="summary">
+  <meta name="theme-color" content="#FBF6EC">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="assets/logo-256.png">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <radialGradient id="coinGrad" cx="35%" cy="30%" r="75%">
+      <stop offset="0" stop-color="#FFE29A"/><stop offset=".55" stop-color="#F7B231"/><stop offset="1" stop-color="#E0820C"/>
+    </radialGradient>
+    <symbol id="coin" viewBox="0 0 80 80">
+      <circle cx="40" cy="43" r="34" fill="#C96A05"/>
+      <circle cx="40" cy="38" r="34" fill="url(#coinGrad)"/>
+      <circle cx="40" cy="38" r="26" fill="none" stroke="#FFF3D1" stroke-opacity=".7" stroke-width="2.5" stroke-dasharray="3 5"/>
+      <g transform="rotate(14 40 38) translate(2 0)" fill="none" stroke="#7A3D02" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M30 24h12.5a6.5 6.5 0 010 13H33M33 24v28M33 37h13a7.5 7.5 0 010 15H30"/>
+        <path d="M35 18.5v4M41 18.5v4M35 53.5v4M41 53.5v4"/>
+      </g>
+    </symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-share" viewBox="0 0 24 24"><path d="M8 12h.01M4 12a8 8 0 1016 0 8 8 0 00-16 0z" fill="none" stroke="none"/><path d="M12 3v12M7 8l5-5 5 5M5 14v4a3 3 0 003 3h8a3 3 0 003-3v-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-table" viewBox="0 0 24 24"><path d="M4 5h16v14H4zM4 10h16M4 15h16M10 5v14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></symbol>
+    <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 4v11M7 10l5 5 5-5M5 20h14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-spark" viewBox="0 0 24 24"><path d="M12 2l2.2 6.3L20.5 10l-6.3 2.2L12 18.5l-2.2-6.3L3.5 10l6.3-1.7z" fill="currentColor"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 6v12M6 12h12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 16l4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+
+    <!-- Category icons -->
+    <symbol id="c-hodl" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="15" rx="3"/><circle cx="12" cy="11.5" r="3.5"/><path d="M12 8v1M12 14v1M8.5 11.5h1M14.5 11.5h1M6.5 19v2M17.5 19v2"/></g></symbol>
+    <symbol id="c-education" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11v5c0 1.5 3 3 6 3s6-1.5 6-3v-5M22 9v6"/></g></symbol>
+    <symbol id="c-funding" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6.2c-1-1.6-4-1.6-4 .9 0 1.9 4 4.3 4 4.3s4-2.4 4-4.3c0-2.5-3-2.5-4-.9z"/><path d="M2 14h3.5l3 1.8h4.5a1.6 1.6 0 010 3.2H9"/><path d="M13.5 19l5.2-2.6a1.6 1.6 0 011.9 2.5L15.5 22H7l-5-2.5"/></g></symbol>
+    <symbol id="c-business" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l1.5-5h15L21 9"/><path d="M3 9a3 3 0 006 0 3 3 0 006 0 3 3 0 006 0"/><path d="M5 11.5V20h14v-8.5M10 20v-5h4v5"/></g></symbol>
+    <symbol id="c-mining" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="6" width="12" height="12" rx="2"/><path d="M9 2.5v3M15 2.5v3M9 18.5v3M15 18.5v3M2.5 9h3M2.5 15h3M18.5 9h3M18.5 15h3"/><rect x="9.5" y="9.5" width="5" height="5" rx="1"/></g></symbol>
+    <symbol id="c-media" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0014 0M12 18v3M8.5 21h7"/></g></symbol>
+    <symbol id="c-tech" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 8l-4 4 4 4M16 8l4 4-4 4M13.5 6l-3 12"/></g></symbol>
+    <symbol id="c-community" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9.5" r="2.5"/><path d="M3 19.5c0-3.3 2.7-5.5 6-5.5s6 2.2 6 5.5M15.5 14.3c.5-.2 1-.3 1.5-.3 2.5 0 4 1.7 4 4.5"/></g></symbol>
+    <symbol id="c-circular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19.5 13a7.5 7.5 0 01-13 3.8M4.5 11A7.5 7.5 0 0117.5 7.2"/><path d="M18 3v4.5h-4.5M6 21v-4.5h4.5"/></g></symbol>
+  </defs>
+</svg>
+
+<!-- ============ Nav ============ -->
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="African Bitcoiners, back to top">
+      <img class="brand-mark" src="assets/logo-256.png" alt="African Bitcoiners" width="50" height="50">
+    </a>
+    <nav class="nav-links" aria-label="Sections">
+      <a href="#overview">Overview</a>
+      <a href="#map">Countries</a>
+      <a href="#categories">Categories</a>
+      <a href="#insights">Insights</a>
+      <a href="#changes">Changes</a>
+      <a href="#method">Methodology</a>
+      <a href="api.html">API</a>
+    </nav>
+    <a class="btn btn-primary btn-sm nav-cta" href="#">Live Directory</a>
+  </div>
+</header>
+
+<!-- Quarter picker: a floating pill that appears once you scroll past the hero -->
+<div class="qdock" id="qdock">
+  <span class="qlabel">Showing <b>2026</b></span>
+  <div class="seg small" id="qSeg" role="group" aria-label="Choose a quarter of 2026"></div>
+</div>
+
+<main id="top">
+
+<!-- ============ Hero ============ -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow"><span class="dot"></span>Ecosystem Growth Tracker · Q4 2026</span>
+      <h1>Is Africa's Bitcoin ecosystem <span class="hl"><em>growing?</em></span></h1>
+      <p class="lede">Every quarter we count the projects in the Africa Bitcoin Live Directory to see what joined, what left, and where the ecosystem is building.</p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="#overview">Explore the data <svg class="arrow"><use href="#i-arrow"/></svg></a>
+        <a class="btn btn-ghost" href="#">Browse the directory</a>
+      </div>
+    </div>
+    <div class="hero-art" id="heroArt" aria-hidden="true">
+      <div class="skeleton"></div>
+      <svg class="coin" style="left:2%;top:10%"><use href="#coin"/></svg>
+      <svg class="coin c2" style="right:4%;top:4%"><use href="#coin"/></svg>
+      <svg class="coin c3" style="right:22%;bottom:3%"><use href="#coin"/></svg>
+    </div>
+  </div>
+  <div class="band" aria-hidden="true"></div>
+</section>
+
+<!-- ============ Overview ============ -->
+<section class="block" id="overview">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <span class="eyebrow"><span class="dot"></span>The quarter at a glance</span>
+        <h2 id="ovTitle">The ecosystem <em>shrank 4.8%</em> in Q4 2026</h2>
+        <p id="ovLede">Pick a number to chart its history. Growth rate = (new − removed) ÷ listings at the start of the quarter.</p>
+      </div>
+    </div>
+
+    <div class="card kpis reveal" role="tablist" aria-label="Metrics" id="kpis"></div>
+
+    <div class="card chart-card reveal">
+      <div class="chart-top">
+        <div>
+          <h3 id="chartTitle">Total listings</h3>
+          <p id="chartSub"></p>
+        </div>
+        <div class="legend" id="chartLegend"></div>
+      </div>
+      <div class="chart" id="history"></div>
+      <div class="table-wrap" id="historyTable" hidden></div>
+      <div class="chart-foot">
+        <div class="note">
+          <span class="badge badge-verified">Verified</span> from a published post
+          <span class="badge badge-counted">Counted</span> name by name
+          <span class="badge badge-blank">Blank</span> not recorded
+        </div>
+        <div>
+          <button class="linkbtn" id="tableToggle" aria-expanded="false"><svg><use href="#i-table"/></svg><span>Show table</span></button>
+          <button class="linkbtn" id="csvBtn"><svg><use href="#i-download"/></svg>CSV</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="story reveal">
+      <div class="card"><div class="s-k">Since the first infographic</div><div class="s-v">+53%</div><p>118 → 180 listings since Q3 2024, and the map grew from 18 to 25 countries.</p></div>
+      <div class="card"><div class="s-k">Best quarter of 2026</div><div class="s-v">Q3 · +14 new</div><p>Nigeria alone added Bityara, BitDevs Ilorin and Sabi Wallet.</p></div>
+      <div class="card"><div class="s-k">First contraction</div><div class="s-v">Q4 · −8 net</div><p>12 listings were removed and only 3 joined. Q4 2026 is the baseline for tracking from here on.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ Map ============ -->
+<section class="block" id="map">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <span class="eyebrow"><span class="dot"></span>Countries &amp; regions</span>
+        <h2>Where Africa is building on <em>Bitcoin</em></h2>
+        <p>Select a country on the map or in the list to see its story: how it is changing, what it leads in, and who joined or left.</p>
+      </div>
+    </div>
+
+    <div class="geo reveal">
+      <div class="card map-card">
+        <div class="map-top">
+          <h3 id="mapTitle">Listings by country</h3>
+          <div class="seg small" id="mapSeg" role="group" aria-label="Map colour">
+            <button aria-pressed="true" data-mode="count">Listings</button>
+            <button aria-pressed="false" data-mode="change">Change</button>
+          </div>
+        </div>
+        <div class="map-wrap" id="mapWrap"><div class="map-fallback">Loading map…</div></div>
+        <div class="map-foot">
+          <div class="map-legend" id="mapLegend"></div>
+          <div class="aw-card" id="awCard"></div>
+        </div>
+      </div>
+      <div class="card profile" id="profile" aria-live="polite"></div>
+    </div>
+
+    <div class="card board reveal">
+      <div class="board-top">
+        <h3>All 25 countries</h3>
+        <span class="chip" id="boardChip"></span>
+      </div>
+      <div class="rows" id="rows"></div>
+    </div>
+
+    <div class="card regions reveal">
+      <div>
+        <h3 id="regTitle">East Africa leads by region</h3>
+        <p id="regText"></p>
+      </div>
+      <div class="reg-rows" id="regRows"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ Categories ============ -->
+<section class="block" id="categories">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <span class="eyebrow"><span class="dot"></span>Categories</span>
+        <h2>What's being <em>built</em></h2>
+        <p>Every dot is one project. Pick a category to light up its share of the ecosystem.</p>
+      </div>
+    </div>
+    <div class="cats reveal">
+      <div class="card waffle-card">
+        <div class="w-k" id="wK">Education</div>
+        <div class="w-v" id="wV">46</div>
+        <p class="w-s" id="wS"></p>
+        <div class="waffle" id="waffle" role="img"></div>
+        <div class="w-foot" id="wFoot"></div>
+      </div>
+      <div class="card cat-list" id="catList" role="listbox" aria-label="Categories"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ Insights ============ -->
+<section class="block" id="insights">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <span class="eyebrow"><span class="dot"></span>Did you know?</span>
+        <h2>Things the numbers <em>say</em></h2>
+        <p>Ten things the 2026 infographics tell us, grouped by where, what and how it’s changing. Copy any of them to share.</p>
+      </div>
+    </div>
+    <div class="facts" id="facts"></div>
+  </div>
+</section>
+
+<!-- ============ Changes ============ -->
+<section class="block" id="changes">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <span class="eyebrow"><span class="dot"></span>Changes log</span>
+        <h2>Who joined, <em>who left</em></h2>
+        <p>Every addition and removal found by comparing the 2026 infographics name by name.</p>
+      </div>
+    </div>
+    <div class="card log reveal">
+      <div class="log-top">
+        <div class="seg" id="logSeg" role="tablist" aria-label="Change type"></div>
+        <div class="search"><svg><use href="#i-search"/></svg><input id="logSearch" type="search" placeholder="Search projects or countries" aria-label="Search projects or countries"></div>
+      </div>
+      <div id="logBody"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ Method ============ -->
+<section class="block" id="method">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <span class="eyebrow"><span class="dot"></span>Methodology</span>
+        <h2>How we <em>count</em></h2>
+        <p>We measure the ecosystem, not individual organisations: projects entering and leaving the directory each quarter.</p>
+      </div>
+    </div>
+    <div class="method reveal">
+      <div>
+        <details class="acc" open>
+          <summary>Growth formulas <span class="pm"><svg width="14" height="14"><use href="#i-plus"/></svg></span></summary>
+          <div class="acc-body">
+            <p>Net growth</p>
+            <div class="formula">projects at end of quarter − projects at start</div>
+            <p>Quarterly growth rate</p>
+            <div class="formula">(new projects − removed projects) ÷ projects at start × 100</div>
+            <p>Example for Q4 2026: (3 − 12) ÷ 188 × 100 = −4.8%.</p>
+          </div>
+        </details>
+        <details class="acc">
+          <summary>What counts as new, active or removed <span class="pm"><svg width="14" height="14"><use href="#i-plus"/></svg></span></summary>
+          <div class="acc-body">
+            <p><b>New:</b> a project listed in this quarter's infographic that was not in the last one. We record its country, category, date added and how we found it.</p>
+            <p><b>Removed:</b> a project that is no longer listed because it shut down, went inactive, stopped operating or can no longer be verified.</p>
+            <p><b>Renamed or moved:</b> counted once. A move between countries lowers one count and raises the other.</p>
+          </div>
+        </details>
+        <details class="acc">
+          <summary>Africa Wide listings <span class="pm"><svg width="14" height="14"><use href="#i-plus"/></svg></span></summary>
+          <div class="acc-body"><p>Pan-African projects are counted in the totals but not shown on the map, since they don't belong to a single country. They grew every quarter of 2026: 29, 31, 35, 37.</p></div>
+        </details>
+      </div>
+      <div>
+        <details class="acc" open>
+          <summary>How sure are these numbers? <span class="pm"><svg width="14" height="14"><use href="#i-plus"/></svg></span></summary>
+          <div class="acc-body">
+            <div class="basis-list">
+              <div><span class="badge badge-verified">Verified</span><span>Taken from a published post or newsletter (Q3 2024 to Q4 2025).</span></div>
+              <div><span class="badge badge-counted">Counted</span><span>Counted name by name from each infographic (2026).</span></div>
+              <div><span class="badge badge-blank">Blank</span><span>No figure recovered. Q2 2025 and the Q3 2025 total are missing.</span></div>
+            </div>
+          </div>
+        </details>
+        <details class="acc">
+          <summary>Known differences from posted figures <span class="pm"><svg width="14" height="14"><use href="#i-plus"/></svg></span></summary>
+          <div class="acc-body">
+            <p>Q3 2026 was posted as 189 listings, 23 countries and 13 new. Our count finds 188, 25 and 14. Category totals for Q3 follow the posted 189.</p>
+            <p>Q4 2026 includes one repeated listing (Bitcoin In The Wild). Counting it, the growth rate is −4.3%.</p>
+          </div>
+        </details>
+        <details class="acc">
+          <summary>Limits of the data <span class="pm"><svg width="14" height="14"><use href="#i-plus"/></svg></span></summary>
+          <div class="acc-body"><p>If a project stops operating without telling us, the directory may not notice right away. We combine Live Directory data with regular manual research rather than relying on self-reported updates alone.</p></div>
+        </details>
+      </div>
+    </div>
+
+    <!-- API -->
+    <div class="api reveal" id="api">
+      <svg class="api-art" aria-hidden="true"><use href="#coin"/></svg>
+      <div>
+        <span class="eyebrow"><span class="dot" style="background:var(--gold)"></span>Live Directory API</span>
+        <h2>Build with <em>this data</em></h2>
+        <p>Pull live project data by country, category, status and date into your own dashboards, research and apps. No more copying from the website.</p>
+        <div class="hero-cta">
+          <a class="btn btn-primary" href="api.html">Read the API docs <svg class="arrow"><use href="#i-arrow"/></svg></a>
+          <a class="btn btn-ghost" href="#">Submit a project</a>
+        </div>
+      </div>
+      <div class="code" role="figure" aria-label="Example API request">
+        <div class="bar"><i></i><i></i><i></i><span>example request</span></div>
+<pre><span class="k">GET</span> /v1/projects?country=<span class="s">NG</span>&amp;category=<span class="s">education</span>&amp;status=<span class="s">active</span>
+
+<span class="c">// 200 OK</span>
+{
+  <span class="s">"total"</span>: <span class="n">7</span>,
+  <span class="s">"data"</span>: [
+    {
+      <span class="s">"name"</span>: <span class="s">"Bityara"</span>,
+      <span class="s">"country"</span>: <span class="s">"Nigeria"</span>,
+      <span class="s">"category"</span>: <span class="s">"Education"</span>,
+      <span class="s">"status"</span>: <span class="s">"active"</span>,
+      <span class="s">"date_added"</span>: <span class="s">"2026-06-11"</span>
+    }, …
+  ]
+}</pre>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div>Data: Africa Bitcoin Ecosystem Infographics, Q3 2024 to Q4 2026 · Updated <span id="updated"></span></div>
+    <div class="f-links"><a href="#">Live Directory</a><a href="api.html">API</a><a href="#method">Methodology</a><a href="#" id="csvBtn2">Download CSV</a></div>
+  </div>
+</footer>
+
+<div class="tip" id="tip" role="tooltip"></div>
+<div class="toast" id="toast" role="status"><svg><use href="#i-check"/></svg><span></span></div>
+
+<script src="assets/vendor/d3-7.9.0.min.js"></script>
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

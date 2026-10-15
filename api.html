@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Live Directory API</title>
+  <meta name="description" content="Query Africa's Bitcoin ecosystem by country, category, status and date. Free, open JSON API from African Bitcoiners.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Live Directory API · African Bitcoiners">
+  <meta property="og:description" content="Query Africa's Bitcoin ecosystem by country, category, status and date. Free, open JSON API.">
+  <meta name="twitter:card" content="summary">
+  <meta name="theme-color" content="#FBF6EC">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="assets/logo-256.png">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="api.css">
+</head>
+<body class="api-page">
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <radialGradient id="coinGrad" cx="35%" cy="30%" r="75%">
+      <stop offset="0" stop-color="#FFE29A"/><stop offset=".55" stop-color="#F7B231"/><stop offset="1" stop-color="#E0820C"/>
+    </radialGradient>
+    <symbol id="coin" viewBox="0 0 80 80">
+      <circle cx="40" cy="43" r="34" fill="#C96A05"/>
+      <circle cx="40" cy="38" r="34" fill="url(#coinGrad)"/>
+      <circle cx="40" cy="38" r="26" fill="none" stroke="#FFF3D1" stroke-opacity=".7" stroke-width="2.5" stroke-dasharray="3 5"/>
+      <g transform="rotate(14 40 38) translate(2 0)" fill="none" stroke="#7A3D02" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M30 24h12.5a6.5 6.5 0 010 13H33M33 24v28M33 37h13a7.5 7.5 0 010 15H30"/>
+        <path d="M35 18.5v4M41 18.5v4M35 53.5v4M41 53.5v4"/>
+      </g>
+    </symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-copy" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="2.5"/><path d="M16 8V6a2 2 0 00-2-2H6a2 2 0 00-2 2v8a2 2 0 002 2h2"/></g></symbol>
+    <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5.5v13l10.5-6.5z" fill="currentColor"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 6v12M6 12h12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+    <symbol id="u-map" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z"/></g></symbol>
+    <symbol id="u-chart" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V4M4 20h16"/><path d="M7.5 15l3.5-4 3 2.5 5-6.5"/></g></symbol>
+    <symbol id="u-pin" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0113 0c0 5.4-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.4"/></g></symbol>
+    <symbol id="u-bell" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 16V11a6 6 0 0112 0v5l1.5 2h-15z"/><path d="M10 20.5a2.2 2.2 0 004 0"/></g></symbol>
+    <symbol id="u-key" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="15" r="4"/><path d="M11 12l8-8M16 7l2.5 2.5M14 9l2 2"/></g></symbol>
+    <symbol id="u-gauge" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 18a8.5 8.5 0 1115 0"/><path d="M12 13.5l4-4"/><circle cx="12" cy="14" r="1.2" fill="currentColor"/></g></symbol>
+    <symbol id="u-webhook" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="17" r="2.5"/><circle cx="18" cy="17" r="2.5"/><circle cx="12" cy="6" r="2.5"/><path d="M8.5 17h7M10.8 8.2L7.3 14.8M13.2 8.2l3.5 6.6"/></g></symbol>
+  </defs>
+</svg>
+
+<!-- ============ Nav ============ -->
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="index.html" aria-label="African Bitcoiners, Ecosystem Growth Tracker">
+      <img class="brand-mark" src="assets/logo-256.png" alt="African Bitcoiners" width="50" height="50">
+    </a>
+    <nav class="nav-links" aria-label="Sections">
+      <a href="index.html">Growth tracker</a>
+      <a href="#build">Use cases</a>
+      <a href="#playground">Playground</a>
+      <a href="#quickstart">Docs</a>
+      <a href="#reference">Reference</a>
+    </nav>
+    <a class="btn btn-primary btn-sm nav-cta" href="#quickstart">Get started</a>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- ============ Hero ============ -->
+<section class="a-hero">
+  <div class="wrap a-hero-grid">
+    <div class="a-hero-copy">
+      <span class="eyebrow"><span class="dot"></span>Live Directory API · v1 beta</span>
+      <h1>Africa’s Bitcoin ecosystem, <em>one request away.</em></h1>
+      <p class="lede">Query every project in the Africa Bitcoin Live Directory by country, category, status and date. Plain JSON, free to use, built for researchers, journalists and builders.</p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="#quickstart">Start building <svg class="arrow"><use href="#i-arrow"/></svg></a>
+        <a class="btn btn-ghost" href="#playground">Try it live</a>
+      </div>
+      <dl class="a-stats">
+        <div><dt>Listings</dt><dd>180</dd></div>
+        <div><dt>Countries</dt><dd>25</dd></div>
+        <div><dt>Categories</dt><dd>9</dd></div>
+        <div><dt>History from</dt><dd>2024</dd></div>
+      </dl>
+    </div>
+
+    <div class="a-hero-art">
+      <div class="a-panel" aria-hidden="true">
+        <div class="a-panel-dots" id="panelDots"></div>
+        <svg class="coin a-coin c1"><use href="#coin"/></svg>
+        <svg class="coin a-coin c2"><use href="#coin"/></svg>
+      </div>
+      <div class="codecard a-hero-code" id="heroCode"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ Use cases ============ -->
+<section class="block" id="build">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <span class="eyebrow"><span class="dot"></span>What you can build</span>
+        <h2>One API, <em>four everyday jobs</em></h2>
+        <p>Pick a job to see the request that does it.</p>
+      </div>
+    </div>
+    <div class="uses reveal">
+      <div class="use-list" id="useList" role="tablist" aria-label="Use cases"></div>
+      <div class="codecard use-code" id="useCode" role="tabpanel"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ Playground ============ -->
+<section class="block" id="playground">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <span class="eyebrow"><span class="dot"></span>Playground</span>
+        <h2>Try it <em>before you write a line</em></h2>
+        <p>Build a request, send it and see the response. Then copy it as cURL, JavaScript or Python.</p>
+      </div>
+    </div>
+    <div class="pg card reveal">
+      <div class="pg-left">
+        <div class="pg-label">Endpoint</div>
+        <div class="pg-endpoints" id="pgEndpoints" role="tablist" aria-label="Endpoint"></div>
+        <div class="pg-label">Parameters</div>
+        <div class="pg-params" id="pgParams"></div>
+        <button class="btn btn-primary pg-send" id="pgSend"><svg><use href="#i-play"/></svg>Send request</button>
+        <p class="pg-note">Preview mode: responses come from the Q4 2026 baseline sample, not the live API.</p>
+      </div>
+      <div class="pg-right">
+        <div class="pg-url">
+          <span class="verb">GET</span>
+          <code id="pgUrl"></code>
+          <button class="iconbtn" id="pgCopyUrl" aria-label="Copy request URL" title="Copy URL"><svg><use href="#i-copy"/></svg></button>
+        </div>
+        <div class="codecard pg-resp">
+          <div class="cc-bar">
+            <span class="status" id="pgStatus">Ready</span>
+            <span class="cc-spacer"></span>
+            <div class="cc-tabs" id="pgLangs" role="tablist" aria-label="Copy as"></div>
+          </div>
+          <pre class="cc-pre" id="pgOut"><span class="c">// Press “Send request” to see the response</span></pre>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ Docs ============ -->
+<section class="block docs-wrap" id="docs">
+  <div class="wrap docs">
+    <aside class="docs-nav" aria-label="Documentation">
+      <div class="dn-group">Get started</div>
+      <a href="#quickstart">Quickstart</a>
+      <a href="#basics">Base URL &amp; format</a>
+      <a href="#auth">Access &amp; rate limits</a>
+      <a href="#errors">Errors</a>
+      <div class="dn-group">Reference</div>
+      <div id="dnEndpoints"></div>
+      <div class="dn-group">Data</div>
+      <a href="#model">The project object</a>
+      <a href="#statuses">Statuses</a>
+      <a href="#roadmap">Coming next</a>
+    </aside>
+
+    <div class="docs-body">
+      <!-- Quickstart -->
+      <article class="doc reveal" id="quickstart">
+        <span class="eyebrow"><span class="dot"></span>Quickstart</span>
+        <h2>Your first request <em>in a minute</em></h2>
+        <p class="doc-lede">No sign-up and no key during the beta. Open a terminal and follow along.</p>
+        <ol class="steps" id="steps"></ol>
+      </article>
+
+      <!-- Basics -->
+      <article class="doc reveal" id="basics">
+        <h3>Base URL &amp; format</h3>
+        <p>All requests go to one base URL over HTTPS. Responses are JSON, dates are <code>YYYY-MM-DD</code>, and quarters are written <code>2026-Q4</code>.</p>
+        <div class="kv">
+          <div><span>Base URL</span><code id="baseUrl"></code></div>
+          <div><span>Format</span><code>application/json</code></div>
+          <div><span>Version</span><code>v1</code> (in the path)</div>
+        </div>
+        <p>List endpoints wrap results in <code>data</code> and describe the page in <code>meta</code>. Pass <code>meta.next_cursor</code> back as <code>cursor</code> to fetch the next page.</p>
+      </article>
+
+      <!-- Auth -->
+      <article class="doc reveal" id="auth">
+        <h3>Access &amp; rate limits</h3>
+        <div class="info-grid">
+          <div class="info"><span class="info-ic"><svg><use href="#u-key"/></svg></span><b>No key needed</b><p>The API is open during the beta. Just send a request.</p></div>
+          <div class="info"><span class="info-ic"><svg><use href="#u-gauge"/></svg></span><b id="rateTitle"></b><p>Per IP address. Every response tells you where you stand in the <code>X-RateLimit-*</code> headers.</p></div>
+        </div>
+      </article>
+
+      <!-- Errors -->
+      <article class="doc reveal" id="errors">
+        <h3>Errors</h3>
+        <p>Errors use standard HTTP status codes and return a short JSON body you can show or log.</p>
+        <div class="table-wrap"><table class="data">
+          <thead><tr><th>Status</th><th>Code</th><th>When it happens</th></tr></thead>
+          <tbody>
+            <tr><td><span class="sc sc-4">400</span></td><td><code>invalid_parameter</code></td><td>A filter has the wrong format, e.g. <code>quarter=Q4</code> instead of <code>2026-Q4</code>.</td></tr>
+            <tr><td><span class="sc sc-4">404</span></td><td><code>not_found</code></td><td>No project matches that <code>id</code>.</td></tr>
+            <tr><td><span class="sc sc-4">429</span></td><td><code>rate_limited</code></td><td>Too many requests. Wait for the number of seconds in <code>Retry-After</code>.</td></tr>
+            <tr><td><span class="sc sc-5">500</span></td><td><code>server_error</code></td><td>Something broke on our side. Try again shortly.</td></tr>
+          </tbody>
+        </table></div>
+        <div class="codecard mini" id="errorCode"></div>
+      </article>
+
+      <!-- Reference -->
+      <div id="reference"></div>
+
+      <!-- Model -->
+      <article class="doc reveal" id="model">
+        <h3>The project object</h3>
+        <p>Every project returned by <code>/projects</code> has this shape.</p>
+        <div class="table-wrap"><table class="data fields" id="modelTable"></table></div>
+      </article>
+
+      <!-- Statuses -->
+      <article class="doc reveal" id="statuses">
+        <h3>Statuses</h3>
+        <p>These follow the growth tracker’s methodology, so API numbers and the published growth figures always agree.</p>
+        <div class="status-list">
+          <div><span class="pill pill-active">active</span><p>Listed in the directory and verifiable.</p></div>
+          <div><span class="pill pill-inactive">inactive</span><p>Shut down, stopped operating or can no longer be verified. Kept so history stays complete.</p></div>
+          <div><span class="pill pill-removed">removed</span><p>No longer on the latest infographic. <code>removed_in</code> says which quarter it dropped off.</p></div>
+        </div>
+      </article>
+
+      <!-- Roadmap -->
+      <article class="doc reveal" id="roadmap">
+        <h3>Coming next</h3>
+        <div class="info-grid">
+          <div class="info"><span class="info-ic"><svg><use href="#u-webhook"/></svg></span><b>Webhooks</b><p>Get a notification the moment a new project is added to the directory.</p></div>
+          <div class="info"><span class="info-ic"><svg><use href="#u-gauge"/></svg></span><b>Higher limits</b><p>Keys with higher rate limits for heavy users and data platforms.</p></div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA ============ -->
+<section class="wrap">
+  <div class="api reveal a-cta">
+    <svg class="api-art" aria-hidden="true"><use href="#coin"/></svg>
+    <div>
+      <span class="eyebrow"><span class="dot" style="background:var(--gold)"></span>Built something?</span>
+      <h2>Show us <em>what you make</em></h2>
+      <p>Dashboards, research, maps, bots. We’ll feature the best builds in the newsletter and help others find them.</p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="#">Share your project <svg class="arrow"><use href="#i-arrow"/></svg></a>
+        <a class="btn btn-ghost" href="index.html">See the growth tracker</a>
+      </div>
+    </div>
+    <div class="a-cta-list">
+      <div><svg><use href="#i-check"/></svg>Free and open during the beta</div>
+      <div><svg><use href="#i-check"/></svg>Same data as the quarterly infographic</div>
+      <div><svg><use href="#i-check"/></svg>Country, category, status and date filters</div>
+      <div><svg><use href="#i-check"/></svg>History back to Q3 2024</div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div>Live Directory API v1 (beta) · African Bitcoiners</div>
+    <div class="f-links"><a href="index.html">Growth tracker</a><a href="#">Live Directory</a><a href="#quickstart">Docs</a><a href="#reference">Reference</a></div>
+  </div>
+</footer>
+
+<div class="toast" id="toast" role="status"><svg><use href="#i-check"/></svg><span></span></div>
+
+<script src="assets/vendor/d3-7.9.0.min.js"></script>
+<script src="data.js"></script>
+<script src="api.js"></script>
+</body>
+</html>
